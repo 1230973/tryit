@@ -16,8 +16,15 @@
   100% { transform: translateX(-50%); }
 }
 
-.animate-scroll {
-  animation: scroll 45s linear infinite;
+.carousel-track {
+  display: flex;
+  width: max-content;
+  flex-shrink: 0;
+  animation: scroll 80s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
 }
 
 .carousel-logo {

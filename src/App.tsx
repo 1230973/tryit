@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Clock, Diamond, Shield, ArrowRight, CheckCircle2, TrendingUp, Zap, Globe, Phone, Mail, MapPin, X, Instagram, Linkedin, Lock, ShieldCheck, Clock4 } from 'lucide-react';
 
@@ -53,6 +53,7 @@ const clientLogos = [
 ];
 
 export default function App() {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -120,7 +121,7 @@ export default function App() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E85D04] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E85D04]"></span>
               </span>
-              Capacidade Limitada: Aceitamos 2 projetos/semana
+              Disponibilidade Express: Vagas semanais limitadas
             </motion.div>
 
             <motion.h1 variants={fadeUp} className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight leading-[1.05] mb-8 text-[#222222]">
@@ -159,7 +160,7 @@ export default function App() {
             <div className="absolute left-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-            <div className="flex animate-scroll w-max hover:[animation-play-state:paused]">
+            <div className="carousel-track">
               {[...clientLogos, ...clientLogos].map((logo, idx) => (
                 <div key={idx} className="relative flex items-center justify-center px-12 md:px-20 shrink-0">
                   <img
@@ -200,17 +201,17 @@ export default function App() {
               className="grid grid-cols-1 md:grid-cols-3 gap-[2rem]"
             >
               <FeatureCard 
-                icon={<Zap className="w-10 h-10 text-[#E85D04]" />}
+                icon={<Zap className="w-10 h-10 md:w-12 md:h-12 text-[#E85D04]" />}
                 title="Velocidade Absoluta"
                 desc="Processos otimizados que nos permitem desenhar, programar e lançar o seu site numa fração do tempo normal."
               />
               <FeatureCard 
-                icon={<Diamond className="w-10 h-10 text-[#E85D04]" />}
+                icon={<Diamond className="w-10 h-10 md:w-12 md:h-12 text-[#E85D04]" />}
                 title="Design de Elite"
                 desc="A estética corporativa perfeita. Transmita confiança imediata aos seus clientes com um visual imaculado."
               />
               <FeatureCard 
-                icon={<Shield className="w-10 h-10 text-[#E85D04]" />}
+                icon={<Shield className="w-10 h-10 md:w-12 md:h-12 text-[#E85D04]" />}
                 title="Zero Chatices"
                 desc="Chave na mão. Tratamos da infraestrutura, do alojamento e do código. O seu foco fica apenas nas vendas."
               />
@@ -283,7 +284,7 @@ export default function App() {
                 </p>
                 
                 {/* Metrics Grid */}
-                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-gray-200">
+                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-gray-200 mb-10">
                   <div>
                     <div className="text-4xl font-black text-[#222222] mb-1">+210%</div>
                     <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">Aumento de Leads</div>
@@ -293,6 +294,15 @@ export default function App() {
                     <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">Tempo de Entrega</div>
                   </div>
                 </div>
+                
+                <a 
+                  href="https://pf-detailstudio.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#E85D04] text-white font-bold text-lg rounded-[4px] hover:bg-[#CC5204] hover:-translate-y-[2px] transition-all duration-300 shadow-sm"
+                >
+                  Visitar Site do Cliente <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
               </motion.div>
               
               <motion.div variants={fadeUp} className="flex-1 w-full relative group">
@@ -368,15 +378,18 @@ export default function App() {
                 
                 <div className="space-y-6 mb-10">
                   <div className="flex items-start gap-4">
-                    <Phone className="w-6 h-6 text-[#E85D04] shrink-0 mt-1" />
-                    <span className="text-[#444444] font-medium text-lg">+351 222 450 000</span>
+                    <Phone className="w-6 h-6 md:w-7 md:h-7 text-[#E85D04] shrink-0 mt-1" />
+                    <div className="flex flex-col">
+                      <span className="text-[#444444] font-medium text-lg">+351 222 450 000 *</span>
+                      <span className="text-[11px] text-gray-400 mt-0.5">* Chamada para a rede fixa nacional</span>
+                    </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <Mail className="w-6 h-6 text-[#E85D04] shrink-0 mt-1" />
+                    <Mail className="w-6 h-6 md:w-7 md:h-7 text-[#E85D04] shrink-0 mt-1" />
                     <span className="text-[#444444] font-medium text-lg">info@tryit.pt</span>
                   </div>
                   <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-[#E85D04] shrink-0 mt-1" />
+                    <MapPin className="w-6 h-6 md:w-7 md:h-7 text-[#E85D04] shrink-0 mt-1" />
                     <span className="text-[#444444] font-medium text-lg">Rua da Boavista 291 3º, 4050-102 Porto, Portugal</span>
                   </div>
                 </div>
@@ -407,11 +420,11 @@ export default function App() {
                 <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-bold text-[#222222] mb-2">Nome</label>
+                      <label className="block text-sm font-bold text-[#222222] mb-2">Nome<span className="text-[#E85D04] ml-1">*</span></label>
                       <input type="text" name="nome" required className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu nome" />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-[#222222] mb-2">Email</label>
+                      <label className="block text-sm font-bold text-[#222222] mb-2">Email<span className="text-[#E85D04] ml-1">*</span></label>
                       <input type="email" name="email" required className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu email" />
                     </div>
                   </div>
@@ -429,26 +442,26 @@ export default function App() {
                   
                   <div>
                     <label className="block text-sm font-bold text-[#222222] mb-2">Assunto</label>
-                    <select name="assunto" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors bg-white">
-                      <option value="Desenvolvimento de Site Express">Desenvolvimento de Site Express</option>
-                      <option value="Consultoria UI/UX">Consultoria UI/UX</option>
-                      <option value="Outro Assunto">Outro Assunto</option>
+                    <select name="assunto" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors bg-white cursor-pointer">
+                      <option value="Desenvolvimento de Site Express" className="cursor-pointer">Desenvolvimento de Site Express</option>
+                      <option value="Consultoria UI/UX" className="cursor-pointer">Consultoria UI/UX</option>
+                      <option value="Outro Assunto" className="cursor-pointer">Outro Assunto</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-bold text-[#222222] mb-2">Mensagem</label>
+                    <label className="block text-sm font-bold text-[#222222] mb-2">Mensagem<span className="text-[#E85D04] ml-1">*</span></label>
                     <textarea name="mensagem" required rows={4} className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors resize-none" placeholder="Como podemos ajudar?"></textarea>
                   </div>
                   
                   <div className="space-y-3 pt-2">
                     <label className="flex items-start gap-3 cursor-pointer">
                       <input type="checkbox" name="aceita_privacidade" required className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
-                      <span className="text-sm text-[#444444]">Li e aceito a <button type="button" onClick={() => setIsPrivacyOpen(true)} className="text-[#E85D04] hover:underline">Política de Privacidade</button></span>
+                      <span className="text-sm text-[#444444]">Li e aceito a <button type="button" onClick={() => setIsPrivacyOpen(true)} className="text-[#E85D04] hover:underline cursor-pointer">Política de Privacidade</button><span className="text-[#E85D04] ml-1">*</span></span>
                     </label>
                     <label className="flex items-start gap-3 cursor-pointer">
                       <input type="checkbox" name="aceita_comunicacoes" required className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
-                      <span className="text-sm text-[#444444]">Autorizo o tratamento de dados para o envio de comunicações.</span>
+                      <span className="text-sm text-[#444444]">Autorizo o tratamento de dados para o envio de comunicações.<span className="text-[#E85D04] ml-1">*</span></span>
                     </label>
                   </div>
 
@@ -484,15 +497,11 @@ export default function App() {
                 {/* Trust Badges */}
                 <div className="mt-10 pt-8 border-t border-[#EAEAEA] flex justify-center gap-6 md:gap-10 text-gray-400">
                   <div className="flex flex-col items-center gap-2">
-                    <Clock className="w-6 h-6" />
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">RESPOSTA EM 2H</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <ShieldCheck className="w-6 h-6" />
+                    <ShieldCheck className="w-6 h-6 md:w-8 md:h-8" />
                     <span className="text-[10px] uppercase font-bold tracking-wider text-center">RGPD COMPLIANT</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <Clock4 className="w-6 h-6" />
+                    <Clock4 className="w-6 h-6 md:w-8 md:h-8" />
                     <span className="text-[10px] uppercase font-bold tracking-wider text-center">SUPORTE 24/7</span>
                   </div>
                 </div>
@@ -507,22 +516,19 @@ export default function App() {
       <footer className="py-[40px] px-[20px] bg-[#111111] text-[#CCCCCC]">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4 text-sm font-medium">
-            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white transition-colors">Política de Privacidade</button>
+            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white transition-colors cursor-pointer">Política de Privacidade</button>
             <span className="text-gray-600">|</span>
             <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Livro de Reclamações</a>
           </div>
           
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4 border-r border-gray-800 pr-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
-                <Instagram className="w-5 h-5" />
+              <a href="https://www.linkedin.com/company/tryit-lda/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
               </a>
             </div>
             <div className="text-sm font-medium">
-              TryIt © {new Date().getFullYear()} All rights reserved.
+              <a href="https://tryit.pt/" target="_blank" rel="noopener noreferrer" className="text-[#E85D04] font-bold hover:underline">TryIt</a> © {new Date().getFullYear()} All rights reserved.
             </div>
           </div>
         </div>
@@ -553,26 +559,18 @@ export default function App() {
                 <X className="w-5 h-5" />
               </button>
               
-              <h2 className="font-display text-3xl font-extrabold text-[#222222] mb-8">Política de Privacidade</h2>
+              <h2 className="font-display text-2xl md:text-3xl font-extrabold text-[#222222] mb-8">Política de Privacidade e Proteção de Dados Pessoais</h2>
               
-              <div className="space-y-6 text-[#444444] font-medium leading-relaxed text-sm md:text-base">
-                <p><strong>1. Introdução</strong><br/>
-                A TryIt Express (uma marca do grupo TryIt) respeita a sua privacidade e está empenhada em proteger os seus dados pessoais. Esta política descreve como recolhemos, usamos e protegemos as suas informações.</p>
-                
-                <p><strong>2. Dados Recolhidos</strong><br/>
-                Recolhemos informações fornecidas diretamente por si através do nosso formulário de contacto, incluindo nome, endereço de email, número de telefone e empresa. Estes dados são estritamente necessários para responder ao seu pedido de orçamento ou contacto.</p>
-                
-                <p><strong>3. Uso da Informação</strong><br/>
-                Os dados recolhidos são utilizados exclusivamente para:<br/>
-                - Processar o seu pedido de desenvolvimento web express;<br/>
-                - Comunicar consigo sobre o projeto;<br/>
-                - Enviar comunicações de marketing (apenas se expressamente autorizado).</p>
-                
-                <p><strong>4. Proteção e Segurança</strong><br/>
-                Implementamos medidas de segurança rigorosas para proteger os seus dados contra acesso não autorizado, alteração, divulgação ou destruição. O nosso site utiliza encriptação SSL e os dados são armazenados em servidores seguros.</p>
-                
-                <p><strong>5. Os Seus Direitos (RGPD)</strong><br/>
-                Ao abrigo do Regulamento Geral sobre a Proteção de Dados, tem o direito de aceder, retificar, apagar ou limitar o tratamento dos seus dados pessoais. Para exercer estes direitos, contacte-nos através de info@tryit.pt.</p>
+              <div className="space-y-4 text-gray-700 font-medium leading-relaxed text-sm md:text-base">
+                <p><strong className="text-[#E85D04] font-bold">Responsável:</strong> Tryit, Lda, com sede na Rua da Boavista 291 3º, 4050-102 Porto, matriculada sob o número único de matrícula e NIPC 515815144.</p>
+                <p><strong className="text-[#E85D04] font-bold">Âmbito:</strong> A presente Política destina-se a regular o tratamento de dados pessoais a realizar pela Tryit no âmbito da utilização do serviço e website TryIt Express.</p>
+                <p><strong className="text-[#E85D04] font-bold">Dados Recolhidos e Objeto:</strong> O tratamento inclui o registo, recolha, utilização e armazenamento de dados fornecidos diretamente pelo titular através de formulário de contacto ou no âmbito da relação comercial constituída.</p>
+                <p><strong className="text-[#E85D04] font-bold">Finalidade:</strong> Os dados são utilizados para a prestação dos serviços de desenvolvimento web solicitados e para fornecer informação sobre serviços ou campanhas, mediante consentimento prévio.</p>
+                <p><strong className="text-[#E85D04] font-bold">Dados Não Tratados:</strong> A Tryit não efetuará o tratamento de dados sensíveis (origem racial ou étnica, opiniões políticas, convicções religiosas, dados genéticos, biométricos ou relativos à saúde).</p>
+                <p><strong className="text-[#E85D04] font-bold">Transmissão e Segurança:</strong> A Tryit não partilhará dados com terceiros (exceto empresas do grupo ou imposição legal) e possui meios técnicos adequados para proteger os dados contra acessos não autorizados.</p>
+                <p><strong className="text-[#E85D04] font-bold">Duração da Manutenção:</strong> Os dados são conservados apenas durante o tempo necessário para a finalidade para a qual foram recolhidos, num prazo máximo de 5 (cinco) anos.</p>
+                <p><strong className="text-[#E85D04] font-bold">Acesso, Alteração e Esquecimento:</strong> É conferido ao titular o direito de aceder, retificar ou pedir o apagamento dos seus dados a qualquer momento. A Tryit não toma decisões comerciais com base em perfis automatizados.</p>
+                <p><strong className="text-[#E85D04] font-bold">Comunicações:</strong> Qualquer questão relativa ao tratamento de dados deverá ser dirigida através do e-mail: info@tryit.pt.</p>
               </div>
               
               <div className="mt-10 pt-6 border-t border-gray-100 text-center">
