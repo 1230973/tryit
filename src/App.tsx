@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Clock, Diamond, Shield, ArrowRight, CheckCircle2, TrendingUp, Zap, Globe } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Clock, Diamond, Shield, ArrowRight, CheckCircle2, TrendingUp, Zap, Globe, Phone, Mail, MapPin, X, Instagram, Linkedin, Lock, ShieldCheck, Clock4 } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -16,6 +16,18 @@ const stagger = {
 };
 
 export default function App() {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    setTimeout(() => {
+      setFormStatus('success');
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }, 1500);
+  };
+
   return (
     <div className="min-h-screen bg-white text-[#222222] font-sans selection:bg-[#E85D04]/20 selection:text-[#E85D04] overflow-x-hidden">
       
@@ -27,8 +39,8 @@ export default function App() {
             <span className="text-[#E85D04]">It Express</span>
           </div>
           <a 
-            href="mailto:tomas.mosqueiro@tryit.pt?subject=Novo%20Site%20-%20TryIt%20Express"
-            className="group px-6 py-3 bg-[#222222] text-white font-bold text-sm rounded-sm hover:bg-[#E85D04] transition-all duration-300 flex items-center gap-2"
+            href="#contactos"
+            className="group px-6 py-3 bg-[#222222] text-white font-bold text-sm rounded-sm hover:bg-[#E85D04] hover:-translate-y-[2px] transition-all duration-300 flex items-center gap-2"
           >
             LET'S TRYIT <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
@@ -47,7 +59,7 @@ export default function App() {
             variants={stagger}
             className="max-w-[1200px] mx-auto flex flex-col items-center justify-center relative z-10"
           >
-            <motion.div variants={fadeUp} className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-[#F8F9FA] border border-gray-200 rounded-full text-sm font-bold text-[#555555]">
+            <motion.div variants={fadeUp} className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-[#F8F9FA] border border-gray-200 rounded-full text-sm font-bold text-[#444444]">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E85D04] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E85D04]"></span>
@@ -60,14 +72,14 @@ export default function App() {
               No Ar em <span className="highlight">48 Horas.</span>
             </motion.h1>
             
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#555555] max-w-4xl mb-12 font-medium leading-relaxed">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#444444] max-w-4xl mb-12 font-medium leading-relaxed">
               Não perca mais clientes para a concorrência. Desenvolvemos landing pages de alta conversão, com design de elite corporativa, entregues em 1 a 2 dias. Sem dores de cabeça.
             </motion.p>
             
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <a 
-                href="mailto:tomas.mosqueiro@tryit.pt?subject=Novo%20Site%20-%20TryIt%20Express"
-                className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#E85D04] text-white font-bold text-lg rounded-sm hover:bg-[#D05003] hover:shadow-lg transition-all duration-300"
+                href="#contactos"
+                className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#E85D04] text-white font-bold text-lg rounded-sm hover:bg-[#CC5204] hover:-translate-y-[2px] hover:shadow-lg transition-all duration-300"
               >
                 Quero o Meu Site Agora <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -103,7 +115,7 @@ export default function App() {
               className="text-center mb-16"
             >
               <h2 className="font-display text-3xl md:text-4xl font-extrabold text-[#222222] mb-4">A Vantagem Injusta</h2>
-              <p className="text-lg text-[#555555] font-medium">Porque é que as empresas de topo escolhem a TryIt Express.</p>
+              <p className="text-lg text-[#444444] font-medium">Porque é que as empresas de topo escolhem a TryIt Express.</p>
             </motion.div>
 
             <motion.div 
@@ -192,7 +204,7 @@ export default function App() {
                   PF Detail Studio.<br />
                   <span className="highlight">O Padrão de Qualidade.</span>
                 </h2>
-                <p className="text-xl text-[#555555] leading-relaxed font-medium mb-10">
+                <p className="text-xl text-[#444444] leading-relaxed font-medium mb-10">
                   Transformámos a presença digital desta marca de estética automóvel de luxo com um site focado exclusivamente em conversão e agendamentos.
                 </p>
                 
@@ -212,8 +224,8 @@ export default function App() {
               <motion.div variants={fadeUp} className="flex-1 w-full relative group">
                 <div className="absolute inset-0 bg-[#E85D04] translate-x-4 translate-y-4 rounded-[12px] transition-transform duration-300 group-hover:translate-x-6 group-hover:translate-y-6" />
                 <img 
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop" 
-                  alt="PF Detail Studio Portfolio" 
+                  src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1000&auto=format&fit=crop" 
+                  alt="Desenvolvimento de site premium para estética automóvel" 
                   className="relative z-10 w-full aspect-[4/3] object-cover rounded-[12px] shadow-lg border border-gray-100"
                   referrerPolicy="no-referrer"
                 />
@@ -257,31 +269,256 @@ export default function App() {
               
               <motion.a 
                 variants={fadeUp}
-                href="mailto:tomas.mosqueiro@tryit.pt?subject=Novo%20Site%20-%20TryIt%20Express"
-                className="group inline-flex items-center justify-center gap-3 px-12 py-6 bg-white text-[#222222] font-bold text-xl rounded-sm hover:bg-gray-100 hover:scale-105 transition-all duration-300"
+                href="#contactos"
+                className="group inline-flex items-center justify-center gap-3 px-12 py-6 bg-white text-[#222222] font-bold text-xl rounded-sm hover:bg-gray-100 hover:-translate-y-[2px] transition-all duration-300 shadow-lg"
               >
                 Contactar Especialista <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </motion.a>
             </motion.div>
           </div>
         </section>
+
+        {/* NEW SECTION: Contactos */}
+        <section id="contactos" className="py-[80px] px-[20px] bg-[#F8F9FA]">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[4rem]">
+              
+              {/* Left Column: Contact Info */}
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+              >
+                <h3 className="font-display text-3xl font-extrabold text-[#222222] mb-8">Informações de Contacto</h3>
+                
+                <div className="space-y-6 mb-10">
+                  <div className="flex items-start gap-4">
+                    <Phone className="w-6 h-6 text-[#E85D04] shrink-0 mt-1" />
+                    <span className="text-[#444444] font-medium text-lg">+351 222 450 000</span>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <Mail className="w-6 h-6 text-[#E85D04] shrink-0 mt-1" />
+                    <span className="text-[#444444] font-medium text-lg">info@tryit.pt</span>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-6 h-6 text-[#E85D04] shrink-0 mt-1" />
+                    <span className="text-[#444444] font-medium text-lg">Rua da Boavista 291 3º, 4050-102 Porto, Portugal</span>
+                  </div>
+                </div>
+
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.286884617307!2d-8.621535484581533!3d41.15011797928683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24650143896593%3A0x8b1e4a07ce18400!2sR.%20da%20Boavista%20291%2C%204050-102%20Porto!5e0!3m2!1sen!2spt!4v1680000000000!5m2!1sen!2spt" 
+                  width="100%" 
+                  height="250" 
+                  style={{ border: 0, borderRadius: '12px' }} 
+                  allowFullScreen={false} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="TryIt Location"
+                  className="shadow-sm"
+                ></iframe>
+              </motion.div>
+
+              {/* Right Column: Form */}
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="bg-white p-8 md:p-10 rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#EAEAEA]"
+              >
+                <h3 className="font-display text-3xl font-extrabold text-[#222222] mb-8">Envie-nos uma mensagem</h3>
+                
+                <form className="space-y-6" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-bold text-[#222222] mb-2">Nome</label>
+                      <input type="text" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu nome" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-[#222222] mb-2">Email</label>
+                      <input type="email" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu email" />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-bold text-[#222222] mb-2">Telefone</label>
+                      <input type="tel" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu telefone" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-[#222222] mb-2">Empresa</label>
+                      <input type="text" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="A sua empresa" />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-bold text-[#222222] mb-2">Assunto</label>
+                    <select className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors bg-white">
+                      <option>Desenvolvimento de Site Express</option>
+                      <option>Consultoria UI/UX</option>
+                      <option>Outro Assunto</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-bold text-[#222222] mb-2">Mensagem</label>
+                    <textarea rows={4} className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors resize-none" placeholder="Como podemos ajudar?"></textarea>
+                  </div>
+                  
+                  <div className="space-y-3 pt-2">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input type="checkbox" className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
+                      <span className="text-sm text-[#444444]">Li e aceito a <a href="#" className="text-[#E85D04] hover:underline">Política de Privacidade</a></span>
+                    </label>
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input type="checkbox" className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
+                      <span className="text-sm text-[#444444]">Autorizo o tratamento de dados para o envio de comunicações.</span>
+                    </label>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    disabled={formStatus !== 'idle'}
+                    className={`w-full py-4 font-bold text-lg rounded-[4px] transition-all duration-300 shadow-sm flex justify-center items-center ${
+                      formStatus === 'success' 
+                        ? 'bg-green-600 text-white hover:bg-green-700' 
+                        : 'bg-[#E85D04] text-white hover:bg-[#CC5204] hover:-translate-y-[2px]'
+                    } ${formStatus === 'submitting' ? 'opacity-80 cursor-not-allowed' : ''}`}
+                  >
+                    {formStatus === 'idle' && 'ENVIAR'}
+                    {formStatus === 'submitting' && 'A ENVIAR...'}
+                    {formStatus === 'success' && 'ENVIADO COM SUCESSO'}
+                  </button>
+                  
+                  {formStatus === 'success' && (
+                    <motion.p initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} className="text-green-600 text-sm font-bold text-center mt-4">
+                      Mensagem enviada! Entraremos em contacto em menos de 4 horas.
+                    </motion.p>
+                  )}
+                </form>
+
+                {/* Trust Badges */}
+                <div className="mt-10 pt-8 border-t border-[#EAEAEA] flex justify-center gap-6 md:gap-10 text-gray-400">
+                  <div className="flex flex-col items-center gap-2">
+                    <Clock className="w-6 h-6" />
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">Resposta<br/>em 2h</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <ShieldCheck className="w-6 h-6" />
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">RGPD<br/>Compliant</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <Clock4 className="w-6 h-6" />
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">Suporte<br/>24/7</span>
+                  </div>
+                </div>
+              </motion.div>
+              
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* Footer */}
-      <footer className="py-[80px] px-[20px] bg-[#111111] text-center">
+      {/* Footer Institucional */}
+      <footer className="py-[40px] px-[20px] bg-[#111111] text-[#CCCCCC]">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="font-display font-black text-xl tracking-tight">
-            <span className="text-white">Try</span>
-            <span className="text-[#E85D04]">It Express</span>
+          <div className="flex items-center gap-4 text-sm font-medium">
+            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white transition-colors">Política de Privacidade</button>
+            <span className="text-gray-600">|</span>
+            <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Livro de Reclamações</a>
           </div>
-          <p className="text-sm text-gray-400 font-medium">
-            ✉️ tomas.mosqueiro@tryit.pt | Uma marca do grupo TryIt.
-          </p>
-          <div className="text-sm text-gray-500 font-medium">
-            © {new Date().getFullYear()} TryIt. Todos os direitos reservados.
+          
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 border-r border-gray-800 pr-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
+            <div className="text-sm font-medium">
+              TryIt © {new Date().getFullYear()} All rights reserved.
+            </div>
           </div>
         </div>
       </footer>
+
+      {/* Privacy Policy Modal */}
+      <AnimatePresence>
+        {isPrivacyOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsPrivacyOpen(false)}
+          >
+            <motion.div 
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 20, opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-white w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-[12px] shadow-2xl p-8 md:p-12 relative"
+              onClick={e => e.stopPropagation()}
+            >
+              <button 
+                onClick={() => setIsPrivacyOpen(false)}
+                className="absolute top-6 right-6 text-gray-400 hover:text-[#E85D04] transition-colors bg-gray-100 hover:bg-orange-50 p-2 rounded-full"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <h2 className="font-display text-3xl font-extrabold text-[#222222] mb-8">Política de Privacidade</h2>
+              
+              <div className="space-y-6 text-[#444444] font-medium leading-relaxed text-sm md:text-base">
+                <p><strong>1. Introdução</strong><br/>
+                A TryIt Express (uma marca do grupo TryIt) respeita a sua privacidade e está empenhada em proteger os seus dados pessoais. Esta política descreve como recolhemos, usamos e protegemos as suas informações.</p>
+                
+                <p><strong>2. Dados Recolhidos</strong><br/>
+                Recolhemos informações fornecidas diretamente por si através do nosso formulário de contacto, incluindo nome, endereço de email, número de telefone e empresa. Estes dados são estritamente necessários para responder ao seu pedido de orçamento ou contacto.</p>
+                
+                <p><strong>3. Uso da Informação</strong><br/>
+                Os dados recolhidos são utilizados exclusivamente para:<br/>
+                - Processar o seu pedido de desenvolvimento web express;<br/>
+                - Comunicar consigo sobre o projeto;<br/>
+                - Enviar comunicações de marketing (apenas se expressamente autorizado).</p>
+                
+                <p><strong>4. Proteção e Segurança</strong><br/>
+                Implementamos medidas de segurança rigorosas para proteger os seus dados contra acesso não autorizado, alteração, divulgação ou destruição. O nosso site utiliza encriptação SSL e os dados são armazenados em servidores seguros.</p>
+                
+                <p><strong>5. Os Seus Direitos (RGPD)</strong><br/>
+                Ao abrigo do Regulamento Geral sobre a Proteção de Dados, tem o direito de aceder, retificar, apagar ou limitar o tratamento dos seus dados pessoais. Para exercer estes direitos, contacte-nos através de info@tryit.pt.</p>
+              </div>
+              
+              <div className="mt-10 pt-6 border-t border-gray-100 text-center">
+                <button 
+                  onClick={() => setIsPrivacyOpen(false)}
+                  className="px-8 py-3 bg-[#222222] text-white font-bold rounded-[4px] hover:bg-[#E85D04] transition-colors"
+                >
+                  Compreendi e Aceito
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating WhatsApp Button */}
+      <a 
+        href="https://wa.me/351937777677?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20sites%20TryIt%20Express."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-[150] bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+        aria-label="Contactar por WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="text-white fill-current">
+          <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.06-.297-.15-1.265-.462-2.406-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.21 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.767-.721 2.016-1.426.246-.705.246-1.31.173-1.426-.075-.116-.273-.181-.574-.331z"></path>
+          <path d="M12.004 22c-1.618 0-3.174-.415-4.555-1.204l-5.04 1.32 1.34-4.912A9.94 9.94 0 0 1 2.004 12C2.004 6.477 6.481 2 12.004 2c5.522 0 9.996 4.477 9.996 10s-4.474 10-9.996 10z"></path>
+        </svg>
+      </a>
     </div>
   );
 }
@@ -296,7 +533,7 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: stri
         {icon}
       </div>
       <h3 className="font-display text-2xl font-bold text-[#222222] mb-4">{title}</h3>
-      <p className="text-[#555555] font-medium leading-relaxed">{desc}</p>
+      <p className="text-[#444444] font-medium leading-relaxed">{desc}</p>
     </motion.div>
   );
 }
@@ -308,7 +545,7 @@ function ProcessStep({ num, title, desc }: { num: string, title: string, desc: s
         <span className="font-display font-black text-xl text-gray-300 group-hover:text-[#E85D04] transition-colors duration-300">{num}</span>
       </div>
       <h3 className="font-display text-2xl font-bold text-[#222222] mb-3">{title}</h3>
-      <p className="text-[#555555] font-medium leading-relaxed max-w-xs">{desc}</p>
+      <p className="text-[#444444] font-medium leading-relaxed max-w-xs">{desc}</p>
     </motion.div>
   );
 }
