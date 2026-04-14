@@ -17,15 +17,34 @@ const stagger = {
 
 export default function App() {
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const formRef = React.useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('submitting');
-    setTimeout(() => {
-      setFormStatus('success');
+    
+    const formData = new FormData(e.currentTarget);
+    formData.append('access_key', 'dce64022-6036-4094-968d-e864b3226ecd');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.status === 200) {
+        setFormStatus('success');
+        if (formRef.current) formRef.current.reset();
+        setTimeout(() => setFormStatus('idle'), 5000);
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setFormStatus('error');
       setTimeout(() => setFormStatus('idle'), 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -330,50 +349,50 @@ export default function App() {
               >
                 <h3 className="font-display text-3xl font-extrabold text-[#222222] mb-8">Envie-nos uma mensagem</h3>
                 
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-bold text-[#222222] mb-2">Nome</label>
-                      <input type="text" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu nome" />
+                      <input type="text" name="nome" required className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu nome" />
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-[#222222] mb-2">Email</label>
-                      <input type="email" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu email" />
+                      <input type="email" name="email" required className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu email" />
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-bold text-[#222222] mb-2">Telefone</label>
-                      <input type="tel" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu telefone" />
+                      <input type="tel" name="telefone" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="O seu telefone" />
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-[#222222] mb-2">Empresa</label>
-                      <input type="text" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="A sua empresa" />
+                      <input type="text" name="empresa" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors" placeholder="A sua empresa" />
                     </div>
                   </div>
                   
                   <div>
                     <label className="block text-sm font-bold text-[#222222] mb-2">Assunto</label>
-                    <select className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors bg-white">
-                      <option>Desenvolvimento de Site Express</option>
-                      <option>Consultoria UI/UX</option>
-                      <option>Outro Assunto</option>
+                    <select name="assunto" className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors bg-white">
+                      <option value="Desenvolvimento de Site Express">Desenvolvimento de Site Express</option>
+                      <option value="Consultoria UI/UX">Consultoria UI/UX</option>
+                      <option value="Outro Assunto">Outro Assunto</option>
                     </select>
                   </div>
                   
                   <div>
                     <label className="block text-sm font-bold text-[#222222] mb-2">Mensagem</label>
-                    <textarea rows={4} className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors resize-none" placeholder="Como podemos ajudar?"></textarea>
+                    <textarea name="mensagem" required rows={4} className="w-full px-4 py-3 rounded-[4px] border border-[#EAEAEA] focus:border-[#E85D04] focus:ring-1 focus:ring-[#E85D04] outline-none transition-colors resize-none" placeholder="Como podemos ajudar?"></textarea>
                   </div>
                   
                   <div className="space-y-3 pt-2">
                     <label className="flex items-start gap-3 cursor-pointer">
-                      <input type="checkbox" className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
-                      <span className="text-sm text-[#444444]">Li e aceito a <a href="#" className="text-[#E85D04] hover:underline">Política de Privacidade</a></span>
+                      <input type="checkbox" name="aceita_privacidade" required className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
+                      <span className="text-sm text-[#444444]">Li e aceito a <button type="button" onClick={() => setIsPrivacyOpen(true)} className="text-[#E85D04] hover:underline">Política de Privacidade</button></span>
                     </label>
                     <label className="flex items-start gap-3 cursor-pointer">
-                      <input type="checkbox" className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
+                      <input type="checkbox" name="aceita_comunicacoes" className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
                       <span className="text-sm text-[#444444]">Autorizo o tratamento de dados para o envio de comunicações.</span>
                     </label>
                   </div>
@@ -384,17 +403,25 @@ export default function App() {
                     className={`w-full py-4 font-bold text-lg rounded-[4px] transition-all duration-300 shadow-sm flex justify-center items-center ${
                       formStatus === 'success' 
                         ? 'bg-green-600 text-white hover:bg-green-700' 
+                        : formStatus === 'error'
+                        ? 'bg-red-600 text-white hover:bg-red-700'
                         : 'bg-[#E85D04] text-white hover:bg-[#CC5204] hover:-translate-y-[2px]'
                     } ${formStatus === 'submitting' ? 'opacity-80 cursor-not-allowed' : ''}`}
                   >
                     {formStatus === 'idle' && 'ENVIAR'}
                     {formStatus === 'submitting' && 'A ENVIAR...'}
                     {formStatus === 'success' && 'ENVIADO COM SUCESSO'}
+                    {formStatus === 'error' && 'ERRO AO ENVIAR'}
                   </button>
                   
                   {formStatus === 'success' && (
                     <motion.p initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} className="text-green-600 text-sm font-bold text-center mt-4">
                       Mensagem enviada! Entraremos em contacto em menos de 4 horas.
+                    </motion.p>
+                  )}
+                  {formStatus === 'error' && (
+                    <motion.p initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} className="text-red-600 text-sm font-bold text-center mt-4">
+                      Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.
                     </motion.p>
                   )}
                 </form>
