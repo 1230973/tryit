@@ -11,3 +11,24 @@
   display: inline;
 }
 
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 45s linear infinite;
+}
+
+.carousel-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(50%);
+  transition: all 0.4s ease;
+}
+
+.carousel-logo:hover {
+  filter: grayscale(0%) opacity(100%);
+}
+

@@ -15,6 +15,43 @@ const stagger = {
   }
 };
 
+const clientLogos = [
+  { src: "https://tryit.pt/wp-content/uploads/2023/10/LOGO-ALGARTEMPO-e1707347911346-300x60.png", alt: "Algartempo" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/12/ami_logo_tryit.png", alt: "AMI" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/logo-apm-e1634845010811-300x123.png", alt: "Associação Democrática da Madeira" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/10/LOGO-BERGCOM.png", alt: "Bercom" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/bt-partner-registered-BBT-300x77.png", alt: "Bindtuning" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/bmw_logo_tryit-300x118.png", alt: "BMW Group" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/10/LOGO-CEREALIS.png", alt: "Cerealis" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/cv_logo_tryit-e1707347971936-300x55.png", alt: "Costa Verde" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/cp_logo_tryit-e1613916499223-1024x330-1-300x97.png", alt: "CP Comboios de Portugal" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/07/dhi-1.png", alt: "DHI" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/07/digitalgroup.png", alt: "Digital Group" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/10/LOGO-DIMSCALE.png", alt: "Dimscale" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/eco_logo_tryit-300x83.png", alt: "Ecosaúde" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/10/LOGO-ENDIPREV-300x86.png", alt: "Endiprev" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/07/expressglass-300x75.png", alt: "Express Glass" },
+  { src: "https://tryit.pt/wp-content/uploads/2025/01/Futurdata-Logo-Preto-300x150.png", alt: "Futurdata" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/grp_logo_tryit-e1613915831664-300x118.png", alt: "Grupotico" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/hid_logo-tryit-1-e1613915529355-300x34.png", alt: "Hidromaia" },
+  { src: "https://tryit.pt/wp-content/uploads/2024/08/homa_logo_tryit-1-300x113.png", alt: "Hôma" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/imf_logo_novo.png", alt: "IMF" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/12/lab_fantasma_logo_tryit-300x123.png", alt: "Lab Fantasma" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/10/LOGO-LIFTECH-300x56.png", alt: "Liftech" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/lg_logo_tryit-300x63.png", alt: "Link&Grow" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/10/LOGO-MEDIAGATE-300x110.png", alt: "Media Gate" },
+  { src: "https://tryit.pt/wp-content/uploads/2024/02/msftpartner_logo_tryit-e1707347727927-300x78.png", alt: "Microsoft Partner" },
+  { src: "https://tryit.pt/wp-content/uploads/2024/08/myos_logo_tryit-300x90.png", alt: "Myos" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/12/omatapalo_logo_tryit-e1707348021109.png", alt: "Omatapalo" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/12/pchiado_logo_tryit-e1707348147981-300x85.png", alt: "Palácio do Chiado" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/propet_logo_tryit-e1613914623826-300x102.png", alt: "Pro Pet" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/12/space_place_logo_tryit-300x55.png", alt: "Space & Place" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/stay_logo_tryit-1024x403-1-300x118.png", alt: "Stay Hotels" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/02/Logo-Sunviauto-Vetorial-300x84.png", alt: "Sunviauto" },
+  { src: "https://tryit.pt/wp-content/uploads/2022/07/ualg-e1707348052759-300x97.png", alt: "UALG" },
+  { src: "https://tryit.pt/wp-content/uploads/2023/12/valerius_logo_tryit-300x93.png", alt: "Valérius Hub" }
+];
+
 export default function App() {
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -109,16 +146,34 @@ export default function App() {
           </motion.div>
         </section>
 
-        {/* Trusted By / Social Proof */}
-        <section className="border-y border-gray-100 bg-white py-[80px] px-[20px]">
-          <div className="max-w-[1200px] mx-auto">
-            <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">
-              O Padrão de Excelência do Grupo TryIt
-            </p>
-            <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-40 grayscale">
-              <div className="font-display font-bold text-xl flex items-center gap-2"><Globe className="w-6 h-6"/> GLOBAL CORP</div>
-              <div className="font-display font-bold text-xl flex items-center gap-2"><TrendingUp className="w-6 h-6"/> NEXT LEVEL</div>
-              <div className="font-display font-bold text-xl flex items-center gap-2"><Zap className="w-6 h-6"/> FAST TECH</div>
+        {/* Trusted By / Social Proof Carousel */}
+        <section className="border-y border-gray-100 bg-white py-[80px] overflow-hidden">
+          <div className="max-w-[1200px] mx-auto px-[20px] mb-16">
+            <h2 className="text-center font-display text-3xl md:text-4xl font-extrabold text-[#222222]">
+              O <span className="highlight">Padrão de Excelência</span> do Grupo TryIt
+            </h2>
+          </div>
+          
+          <div className="relative w-full flex items-center">
+            {/* Gradient masks for smooth fade on edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+            <div className="flex animate-scroll w-max hover:[animation-play-state:paused]">
+              {[...clientLogos, ...clientLogos].map((logo, idx) => (
+                <div key={idx} className="relative flex items-center justify-center px-12 md:px-20 shrink-0">
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="carousel-logo shrink-0"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.style.opacity = '0';
+                      e.currentTarget.style.visibility = 'hidden';
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -243,7 +298,7 @@ export default function App() {
               <motion.div variants={fadeUp} className="flex-1 w-full relative group">
                 <div className="absolute inset-0 bg-[#E85D04] translate-x-4 translate-y-4 rounded-[12px] transition-transform duration-300 group-hover:translate-x-6 group-hover:translate-y-6" />
                 <img 
-                  src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1000&auto=format&fit=crop" 
+                  src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1000&auto=format&fit=crop" 
                   alt="Desenvolvimento de site premium para estética automóvel" 
                   className="relative z-10 w-full aspect-[4/3] object-cover rounded-[12px] shadow-lg border border-gray-100"
                   referrerPolicy="no-referrer"
@@ -392,7 +447,7 @@ export default function App() {
                       <span className="text-sm text-[#444444]">Li e aceito a <button type="button" onClick={() => setIsPrivacyOpen(true)} className="text-[#E85D04] hover:underline">Política de Privacidade</button></span>
                     </label>
                     <label className="flex items-start gap-3 cursor-pointer">
-                      <input type="checkbox" name="aceita_comunicacoes" className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
+                      <input type="checkbox" name="aceita_comunicacoes" required className="mt-1 w-4 h-4 accent-[#E85D04] border-gray-300 rounded cursor-pointer" />
                       <span className="text-sm text-[#444444]">Autorizo o tratamento de dados para o envio de comunicações.</span>
                     </label>
                   </div>
@@ -430,15 +485,15 @@ export default function App() {
                 <div className="mt-10 pt-8 border-t border-[#EAEAEA] flex justify-center gap-6 md:gap-10 text-gray-400">
                   <div className="flex flex-col items-center gap-2">
                     <Clock className="w-6 h-6" />
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">Resposta<br/>em 2h</span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">RESPOSTA EM 2H</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <ShieldCheck className="w-6 h-6" />
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">RGPD<br/>Compliant</span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">RGPD COMPLIANT</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <Clock4 className="w-6 h-6" />
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">Suporte<br/>24/7</span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-center">SUPORTE 24/7</span>
                   </div>
                 </div>
               </motion.div>
