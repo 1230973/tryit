@@ -6,3 +6,8 @@
   --font-display: "Montserrat", sans-serif;
 }
 
+.highlight {
+  background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #E85D04 60%);
+  display: inline;
+}
+
